@@ -6,11 +6,26 @@ var router = express.Router();
 //   res.render('index', { title: 'Express' });
 // });
 
-// 该路由使用的中间件
+//一、应用级中间件
+//cosnt app = require('express')();
+//使用app挂载中间件
+//应用级中间件绑定使用use() 或者METHOD()，METHOD未请求类型
+
+//二、路由级中间件
+//const router = require('express').Router();
+//使用router挂载中间件
+//中间件绑定使用use() 或者METHOD()，METHOD未请求类型
+
+// 未挂载路径的中间件，所有路径的中间件都会执行(js未单线程，都是逐一执行代码，放在存在send、render等中介请求-响应循环的中间件后，便不会执行)
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
   next();
 });
+
+router.get('/', function (req, res, next) {
+  res.send('欢迎来到express!!!');
+});
+
 
 //使用一个函数处理路由
 router.get('/example/a', function (req, res, next) {
