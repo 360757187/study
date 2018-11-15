@@ -1,0 +1,75 @@
+/**app.wxss**/
+@import "lib/style/iconfont.wxss";
+
+.img-item{
+    width: 128rpx;
+    height: 190rpx;
+}
+
+.grade{
+    font-weight: 700;
+    color: #faaf00;
+    font-size: 30rpx;
+}
+
+.w100{
+    width: 100%;
+}
+
+.h100{
+    height: 100%;
+}
+
+.color-32{
+    color: #333333;
+}
+
+.color-66{
+    color: #666666;
+}
+
+.font-13{
+    font-size: 26rpx;
+}
+
+.font-18{
+    font-size: 36rpx;
+}
+
+.p-tb05{
+    padding: 10rpx 0;
+}
+
+.m-12{
+    margin: 24rpx;
+}
+
+.m-b05{
+    margin-bottom:10rpx;
+}
+
+.m-t12{
+    margin-top: 24rpx;
+}
+
+.m-b12{
+    margin-bottom: 24rpx;
+}
+
+.m-l12{
+    margin-left: 24rpx;
+}
+
+.m-r12{
+    margin-right: 24rpx;
+}
+
+.m-r0{
+    margin-right: 0;
+}
+
+.text-overflow{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

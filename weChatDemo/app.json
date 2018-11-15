@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#e54847",
+    "navigationBarTitleText": "猫眼电影",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "default",
+    "backgroundColor": "#f6f7f8",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "selectedColor": "#e54847",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "电影"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "影院"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "我的"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wxe5f52902cf4de896"
+  ]
+}
