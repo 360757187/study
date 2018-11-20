@@ -114,12 +114,45 @@ Page({
      * 页面上拉事件
      */
     onReachBottom() {
-        if (!this.data.isHot) {
-            const pageIndex = getApp().globalData.hotPageIndex++
-            console.log('上拉！！！' + getApp().globalData.hotPageIndex);  
+        const that = this;
+        if (!that.data.isHot) {
+            const pageSize = getApp().globalData.pageSize;
+            const pageIndex = ++getApp().globalData.hotPageIndex;
+            const length = getApp().globalData.hotMovie.movieList.length;
+            console.log('上拉！！！' + getApp().globalData.hotPageIndex);
+            const nextMovieList = getApp().globalData.hotMovie.movieIds.slice(length, pageIndex*pageSize);
+            const url = 'https://m.maoyan.com/ajax/moreComingList?token=&movieIds=' + nextMovieList;
+            that.getMoreMovie(url, function ({coming}) {
+                coming.forEach(item => {
+                    let img = item.img.split('w.h');
+                    item.img = img[0] + '120.180' + img[1]; 
+                });
+                getApp().globalData.hotMovie.movieList = [...getApp().globalData.hotMovie.movieList, ...coming];
+                that.setData({
+                    hotMovie: {
+                        movieList: getApp().globalData.hotMovie.movieList
+                    }
+                })
+            });  
         } else {
-            const pageIndex = getApp().globalData.comingPageIndex++;
+            const pageSize = getApp().globalData.pageSize;
+            const pageIndex = ++getApp().globalData.comingPageIndex;
+            const length = getApp().globalData.comingMovie.coming.length;
             console.log('上拉！！！' + getApp().globalData.comingPageIndex); 
+            const nextMovieList = getApp().globalData.comingMovie.movieIds.slice(length, pageIndex*pageSize);
+            const url = 'https://m.maoyan.com/ajax/moreComingList?token=&movieIds=' + nextMovieList;
+            this.getMoreMovie(url, function ({coming}) {
+                coming.forEach(item => {
+                    let img = item.img.split('w.h');
+                    item.img = img[0] + '120.180' + img[1]; 
+                });
+                getApp().globalData.comingMovie.coming = [...getApp().globalData.comingMovie.coming, ...coming];
+                that.setData({
+                    comingMovie: {
+                        coming: getApp().globalData.comingMovie.coming
+                    }
+                })
+            }); 
         }
     },
 
@@ -192,26 +225,15 @@ Page({
     },
 
     //获取更多
-    getMoreMovie() {
+    getMoreMovie(url, cb) {
         const that = this;
         wx.request({
-            url: 'http://m.maoyan.com/ajax/moreComingList?token=&movieIds=',
+            url,
             header: {
                 'content-type': 'application/json'
             },
             success({data}) {
-                console.log(data);
-                data.movieList.forEach(item => {
-                    let img = item.img.split('w.h');
-                    item.img = img[0] + '120.180' + img[1]; 
-                });
-                that.setData({
-                    hotMovie: {
-                        movieIds: data.movieIds,
-                        movieList: data.movieList, 
-                        total: data.total
-                    }
-                })
+                cb && cb(data);
             }
         })
     }

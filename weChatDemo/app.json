@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/movieTheatre/movieTheatre"
   ],
   "window": {
     "navigationBarBackgroundColor": "#e54847",
@@ -17,16 +18,20 @@
   "tabBar": {
     "borderStyle": "black",
     "selectedColor": "#e54847",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "电影"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "影院"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "我的"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "电影"
+      },
+      {
+        "pagePath": "pages/movieTheatre/movieTheatre",
+        "text": "影院"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "我的"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 10000,

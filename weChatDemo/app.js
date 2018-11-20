@@ -38,6 +38,7 @@ App({
     pageTitle: "猫眼电影",
     hotPageIndex: 1,
     comingPageIndex: 1,
+    pageSize: 10,
     //热映页数据
     hotMovie: {
         movieIds: [],
