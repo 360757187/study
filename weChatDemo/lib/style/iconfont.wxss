@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 909979 */
+    src: url('//at.alicdn.com/t/font_909979_l9m1p2lq2l.eot');
+    src: url('//at.alicdn.com/t/font_909979_l9m1p2lq2l.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_909979_l9m1p2lq2l.woff') format('woff'),
+    url('//at.alicdn.com/t/font_909979_l9m1p2lq2l.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_909979_l9m1p2lq2l.svg#iconfont') format('svg');
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 60rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /*本项目使用的18个图标 */
+  .icon-wode:before {
+    content: '\e624';
+  }
+  .icon-sanjiao:before {
+    content: '\e65a';
+  }
+  .icon-bofang:before {
+    content: '\e710';
+  }
+  .icon-dianying:before {
+    content: '\e6ee';
+  }
+  .icon-xing:before {
+    content: '\e6b0';
+  }
+  .icon-shixin:before {
+    content: '\e64e';
+  }
+  .icon-kongxin:before {
+    content: '\e82a';
+  }
+  .icon-sousuo:before {
+    content: '\e61e';
+  }
+  .icon-yingyuan:before {
+    content: '\e61d';
+  }

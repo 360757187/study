@@ -1,0 +1,82 @@
+<view class="topbar">
+	<view style="margin-left: 20rpx; height: 100%;">
+		成都
+		<icon class="iconfont icon-sanjiao" size="20" />
+	</view>
+	<view class="switch-type" style="d">
+		<view class="{{isHot ? '' : 'active'}}" bindtap="hotFun">热映</view>
+		<view class="{{isHot ? 'active' : ''}}" bindtap="comingFun">待映</view>
+	</view>
+	<icon class="iconfont icon-sousuo" size="20"  style="margin-right: 20rpx;"/>
+</view>
+<!-- 热映 -->
+<view hidden="{{isHot}}">
+	<block wx:for="{{hotMovie.movieList}}" wx:key="{{item.id}}">
+		<view class="movie-item m-r12">
+			<view >
+				<image class="img-item m-12 m-r0" lazy-load="{{true}}" src="{{item.img}}"/>
+			</view>
+			<view class="movie-item-info m-12 p-tb05 w100">
+				<view style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; flex: 1;">
+					<view class="font-18 color-33 m-b05 text-overflow w100" style="font-weight: 700;">{{item.nm}}</view>
+					<view class="font-13 color-66 text-overflow w100" wx:if="{{item.globalReleased}}">观众评分
+						<text class="grade">{{item.sc}}</text>
+					</view>
+					<view class="font-13 color-66 text-overflow w100" wx:else>
+						<text class="grade">{{item.wish}}</text>人想看
+					</view>
+					<view class="font-13 color-66 text-overflow w100">主演:{{item.star}}</view>
+					<view class="font-13 color-66 text-overflow w100">{{item.showInfo}}</view>
+				</view>
+				<view class="m-l12">
+					<button type="warn" size="mini" wx:if="{{item.showst === 3}}">购票</button>
+					<button type="" size="mini" style="background-color: #3c9fe6; color: white;" wx:elif="{{item.showst === 4}}">预售</button>
+					<button type="" size="mini" style="background-color: #faaf00; color: white;" wx:elif="{{item.showst === 1}}">想看</button>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
+<!-- 待映 -->
+<view hidden="{{!isHot}}">
+	<view class="m-12">
+		<view class="m-b12 font-14 color-33">近期最受期待</view>
+		<view style="width: 100%; display: flex; overflow-x: scroll;">
+			<view class="m-r12" wx:for="{{mostExpected.coming}}" wx:key="{{item.id}}" style="flex-shink: 0; width: 170rpx;">
+				<view style="position: relative; width: 170rpx; height: 230rpx;">
+					<text class="grade font-10" style="position: absolute; bottom: 0;">
+					{{item.wish}}人想看
+					</text>
+					<image class="w100 h100" src="{{item.img}}"/>
+				</view>
+				<view class="color-22 font-13 text-overflow w100">{{item.nm}}</view>
+				<view class="color-99 font-10 text-overflow w100">{{item.comingTitle}}</view>
+			</view>
+		</view>
+	</view>
+	<block wx:for="{{comingMovie.coming}}" wx:key="{{item.id}}">
+		<view class="movie-item m-r12">
+			<view>
+				<image class="m-12 m-r0 img-item" lazy-load="{{true}}" src="{{item.img}}"/>
+			</view>
+			<view class="movie-item-info m-12 p-tb05 w100">
+				<view style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; flex: 1;">
+					<view class="font-18 color-33 m-b05 text-overflow w100" style="font-weight: 700;">{{item.nm}}</view>
+					<view class="font-13 color-66 text-overflow w100" wx:if="{{item.globalReleased}}">观众评分
+						<text class="grade">{{item.sc}}</text>
+					</view>
+					<view class="font-13 color-66 text-overflow w100" wx:else>
+						<text class="grade">{{item.wish}}</text>人想看
+					</view>
+					<view class="font-13 color-66 text-overflow w100" wx:if="{{item.star}}">主演:{{item.star}}</view>
+					<view class="font-13 color-66 text-overflow w100">{{item.showInfo || item.rt + '上映'}}</view>
+				</view>
+				<view class="m-l12">
+					<button type="warn" size="mini" wx:if="{{item.showst === 3}}">购票</button>
+					<button type="" size="mini" style="background-color: #3c9fe6; color: white;" wx:elif="{{item.showst === 4}}">预售</button>
+					<button type="" size="mini" style="background-color: #faaf00; color: white;" wx:elif="{{item.showst === 1}}">想看</button>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
