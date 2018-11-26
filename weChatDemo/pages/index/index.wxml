@@ -41,8 +41,8 @@
 <view hidden="{{!isHot}}">
 	<view class="m-12">
 		<view class="m-b12 font-14 color-33">近期最受期待</view>
-		<view style="width: 100%; display: flex; overflow-x: scroll;">
-			<view class="m-r12" wx:for="{{mostExpected.coming}}" wx:key="{{item.id}}" style="flex-shink: 0; width: 170rpx;">
+		<scroll-view scroll-x lower-threshold bindscrolltolower="scrollRight" style="width: 100%; white-space: nowrap;">
+			<view class="m-r12" wx:for="{{mostExpected.coming}}" wx:key="{{item.id}}" style="width: 170rpx; display: inline-block;">
 				<view style="position: relative; width: 170rpx; height: 230rpx;">
 					<text class="grade font-10" style="position: absolute; bottom: 0;">
 					{{item.wish}}人想看
@@ -52,7 +52,7 @@
 				<view class="color-22 font-13 text-overflow w100">{{item.nm}}</view>
 				<view class="color-99 font-10 text-overflow w100">{{item.comingTitle}}</view>
 			</view>
-		</view>
+		</scroll-view>
 	</view>
 	<block wx:for="{{comingMovie.coming}}" wx:key="{{item.id}}">
 		<view class="movie-item m-r12">

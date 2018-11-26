@@ -107,7 +107,9 @@ Page({
      * 页面下拉刷新事件
      */
     onPullDownRefresh() {
-        console.log('刷新！！！');
+        setTimeout(() => {
+            wx.stopPullDownRefresh();
+        }, 2000)
     },
 
     /**
@@ -116,6 +118,7 @@ Page({
     onReachBottom() {
         const that = this;
         if (!that.data.isHot) {
+            if (getApp().globalData.hotMovie.loading) return;
             const pageSize = getApp().globalData.pageSize;
             const pageIndex = ++getApp().globalData.hotPageIndex;
             const length = getApp().globalData.hotMovie.movieList.length;
@@ -128,6 +131,11 @@ Page({
                     item.img = img[0] + '120.180' + img[1]; 
                 });
                 getApp().globalData.hotMovie.movieList = [...getApp().globalData.hotMovie.movieList, ...coming];
+                if (getApp().globalData.hotMovie.movieList.length < getApp().globalData.hotMovie.movieIds.length) {
+                    getApp().globalData.hotMovie.loading = false;
+                } else {
+                    getApp().globalData.hotMovie.loading = true;
+                }
                 that.setData({
                     hotMovie: {
                         movieList: getApp().globalData.hotMovie.movieList
@@ -135,6 +143,7 @@ Page({
                 })
             });  
         } else {
+            if (getApp().globalData.comingMovie.loading) return;
             const pageSize = getApp().globalData.pageSize;
             const pageIndex = ++getApp().globalData.comingPageIndex;
             const length = getApp().globalData.comingMovie.coming.length;
@@ -147,6 +156,11 @@ Page({
                     item.img = img[0] + '120.180' + img[1]; 
                 });
                 getApp().globalData.comingMovie.coming = [...getApp().globalData.comingMovie.coming, ...coming];
+                if (getApp().globalData.comingMovie.coming.length < getApp().globalData.comingMovie.movieIds.length) {
+                    getApp().globalData.comingMovie.loading = false;
+                } else {
+                    getApp().globalData.comingMovie.loading = true;
+                }
                 that.setData({
                     comingMovie: {
                         coming: getApp().globalData.comingMovie.coming
@@ -224,6 +238,11 @@ Page({
         }
     },
 
+    //获取首页数据
+    getOneMovieList() {
+
+    },
+
     //获取更多
     getMoreMovie(url, cb) {
         const that = this;
@@ -236,6 +255,32 @@ Page({
                 cb && cb(data);
             }
         })
+    },
+
+    //获取更多最受期待
+    scrollRight() {
+        let that = this;
+        if (getApp().globalData.mostExpected.loading) return;
+        getApp().globalData.mostExpected.paging.offset += 10;
+        let url = `https://m.maoyan.com/ajax/mostExpected?ci=59&limit=10&offset=${getApp().globalData.mostExpected.paging.offset}&token=`
+        console.log(111);
+        this.getMoreMovie(url, function (data) {
+            data.coming.forEach(item => {
+                let img = item.img.split('w.h');
+                item.img = img[0] + '170.230' + img[1]; 
+            });
+            getApp().globalData.mostExpected.coming = [...getApp().globalData.mostExpected.coming, ...data.coming];
+            if (getApp().globalData.mostExpected.coming.length < getApp().globalData.mostExpected.paging.total) {
+                getApp().globalData.mostExpected.loading = false;
+            } else {
+                getApp().globalData.mostExpected.loading = true;
+            }
+            that.setData({
+                mostExpected: {
+                    coming: getApp().globalData.mostExpected.coming
+                }
+            })
+        });
     }
     
 })

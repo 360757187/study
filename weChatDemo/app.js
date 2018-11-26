@@ -43,17 +43,21 @@ App({
     hotMovie: {
         movieIds: [],
         movieList: [],
-        total: 0
+        total: 0,
+        loading: true
     },
     //待映
     comingMovie: {
       coming: [],
-      movieIds: []
+      movieIds: [],
+      loading: true
     },
     //最受期待
     mostExpected: {
       coming: [],
-      paging: []
+      paging: [],
+      loading: true,
+      offset: 10
     }
   }
 })
