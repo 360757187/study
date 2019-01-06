@@ -1,0 +1,13 @@
+<view class="nav">
+    <view data-opt="list15" bindtap="tap">list15</view>
+    <view data-opt="list1" bindtap="tap">list1</view>
+    <view data-opt="list20" bindtap="tap">list20</view>
+    <view data-opt="list9" bindtap="tap">list9</view>
+    <view data-opt="list13" bindtap="tap">list13</view>
+    <view data-opt="list2" bindtap="tap">list2</view>
+</view>
+<scroll-view scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="scr">
+    <view wx:for="{{list}}" id="{{item}}" wx:key="{{item}}" data-opt="{{item}}" class="yellow">
+        {{item}}
+    </view>
+</scroll-view>

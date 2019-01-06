@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/login/login",
     "pages/logs/logs",
-    "pages/movieTheatre/movieTheatre"
+    "pages/movieTheatre/movieTheatre",
+    "pages/cityList/cityList",
+    "pages/test/test"
   ],
   "window": {
     "navigationBarBackgroundColor": "#e54847",
@@ -11,9 +13,7 @@
     "navigationBarTextStyle": "white",
     "navigationStyle": "default",
     "backgroundColor": "#f6f7f8",
-    "backgroundTextStyle": "light",
-    "enablePullDownRefresh": true,
-    "onReachBottomDistance": 50
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
     "borderStyle": "black",
@@ -28,7 +28,7 @@
         "text": "影院"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/test/test",
         "text": "我的"
       }
     ]

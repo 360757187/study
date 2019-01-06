@@ -1,8 +1,8 @@
 <view class="topbar">
-	<view style="margin-left: 20rpx; height: 100%;">
+	<navigator style="margin-left: 20rpx;" url="../cityList/cityList">
 		成都
-		<icon class="iconfont icon-sanjiao" size="20" />
-	</view>
+		<icon class="iconfont icon-sanjiao" size="20"/>
+	</navigator>
 	<view class="switch-type" style="d">
 		<view class="{{isHot ? '' : 'active'}}" bindtap="hotFun">热映</view>
 		<view class="{{isHot ? 'active' : ''}}" bindtap="comingFun">待映</view>

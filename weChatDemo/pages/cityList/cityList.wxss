@@ -1,0 +1,31 @@
+page {
+    height: 100%;
+}
+.content{
+    height: 100%;
+}
+.city-item{
+    background: #fff;
+    width: 25%;
+    height: 33px;
+    margin-top: 15px;
+    margin-left: 4%;
+    padding: 0 4px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    line-height: 33px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.city-list-item{
+    height: 44px;
+    line-height: 44px;
+    margin-left: 15px;
+    border-bottom: 1px solid #c8c7cc;
+}
+.city-list-item:last-child {
+    border-bottom-color: transparent;
+}

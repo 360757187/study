@@ -1,0 +1,10 @@
+<view class="list">
+    <view bindtap='jumpTo' data-opt="list0">list0</view>
+    <view bindtap='jumpTo' data-opt="list11">list11</view>
+    <view bindtap='jumpTo' data-opt="list29">list29</view>
+</view>
+<scroll-view scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="scr">
+    <view wx:for="{{list}}" id="{{item}}" wx:key="{{item}}" data-opt="{{item}}" class="test yellow">
+        {{item}}
+    </view>
+</scroll-view>
