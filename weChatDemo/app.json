@@ -3,8 +3,8 @@
     "pages/index/index",
     "pages/login/login",
     "pages/logs/logs",
-    "pages/movieTheatre/movieTheatre",
     "pages/cityList/cityList",
+    "pages/movieTheatre/movieTheatre",
     "pages/test/test"
   ],
   "window": {

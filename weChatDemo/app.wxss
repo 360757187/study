@@ -36,6 +36,18 @@
     color: #999999;
 }
 
+.color-red{
+    color: #f03d37;
+}
+
+.bg-red{
+    background-color: #f03d37;
+}
+
+.bg-purple{
+    background-color: #0a387f;
+}
+
 .bg-body{
     background-color: #ebebeb;
 }
@@ -77,6 +89,10 @@
     padding-bottom: 10rpx;
 }
 
+.p-10{
+    padding: 20rpx;
+}
+
 .p-t10{
     padding-top: 20rpx;
 }
@@ -105,6 +121,10 @@
     margin-top: 24rpx;
 }
 
+.m-b10{
+    margin-bottom: 20rpx;
+}
+
 .m-b12{
     margin-bottom: 24rpx;
 }
@@ -129,4 +149,16 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.flex{
+    display: flex;
+}
+
+.justify-content-around{
+    justify-content: space-around;
+}
+
+.justify-content-between{
+    justify-content: space-between;
 }

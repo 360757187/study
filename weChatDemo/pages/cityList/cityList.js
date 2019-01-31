@@ -11,7 +11,8 @@ Page({
     locationCity: '正在定位',
     toCity: '',
     pageStartY: '',
-    pageMoveY: ''
+    pageMoveY: '',
+    startCity: ''
   },
 
   /**
@@ -171,26 +172,45 @@ Page({
       firstLetter
     };
   },
-  // touchStart(e) {
-  //   // console.log(e);
-  //   this.setData({
-  //     pageStartY: e.touches[0].pageY
-  //   })
-  // },
-  // touchMove(e) {
-  //   let moveY = e.touches[0].pageY - this.data.pageStartY
-  //   this.setData({
-  //     pageMoveY: moveY
-  //   })
-  //   console.log(moveY);
-  //   let index = Math.floor(moveY / 5);
-  //   let firstLetter = ['定位', '最近', '热门',...this.data.firstLetter]
-  //   let city = firstLetter[index];
-  //   console.log(city);
-  //   this.setData({
-  //     toCity: city
-  //   })
-  // },
+  touchstart(e) {
+    // console.log(e);
+    this.setData({
+      pageStartY: e.touches[0].pageY,
+      startCity: e.target.dataset.id
+    })
+  },
+  touchMove(e) {
+    let moveY = e.touches[0].pageY - this.data.pageStartY;
+    let firstLetter = ['定位', '最近', '热门',...this.data.firstLetter]
+    let city = '';
+    //当前城市再数组中下标
+    switch (this.data.startCity) {
+      case 'location':
+        city = '定位';
+        break;
+      case 'lastActivity':
+        city = '最近';
+        break;
+      case 'hotCity':
+        city = '热门';
+        break;
+      default:
+        city = this.data.startCity;
+        break;
+    }
+    let index = firstLetter.indexOf(city);
+    //判断上滑还是下滑
+    let diff = Math.floor(moveY / 5);
+    city = firstLetter[(index + diff)];
+    this.setData({
+      pageMoveY: moveY
+    });
+    console.log(diff);
+    console.log(city);
+    this.setData({
+      toCity: city
+    });
+  },
   selectItem(e) {
     console.log(e);
     this.setData({

@@ -1,13 +1,30 @@
-<view class="nav">
-    <view data-opt="list15" bindtap="tap">list15</view>
-    <view data-opt="list1" bindtap="tap">list1</view>
-    <view data-opt="list20" bindtap="tap">list20</view>
-    <view data-opt="list9" bindtap="tap">list9</view>
-    <view data-opt="list13" bindtap="tap">list13</view>
-    <view data-opt="list2" bindtap="tap">list2</view>
+<view class="header">
+    <navigator style="margin-left: 20rpx;" url="../cityList/cityList">
+        成都
+        <icon class="iconfont icon-sanjiao" size="20" />
+    </navigator>
+    <input placeholder="找影院" placeholder-class="placeholder-class"/>
 </view>
-<scroll-view scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="scr">
-    <view wx:for="{{list}}" id="{{item}}" wx:key="{{item}}" data-opt="{{item}}" class="yellow">
-        {{item}}
+<scroll-view scroll-y="true" scroll-with-animation="true" class="">
+    <view wx:for="{{theatreList}}" wx:key="{{item}}" >
+        <view class="theatre-item p-10">
+            <view class="m-b10">
+                <text class="font-18 m-r12">{{item.nm}}</text>
+                <text class="font-18 color-red" wx:if="{{item.sellPrice}}">{{item.sellPrice}}</text>
+                <text class="font-14 color-red" wx:if="{{item.sellPrice}}">元起</text>
+            </view>
+            <view class="flex justify-content-between font-14">
+                <text class="color-22">{{item.addr}}</text>
+                <text class="color-99">{{item.distance}}</text>
+            </view>
+            <view class="" wx:if="{{item.promotion.platformActivityTag}}">
+                <text class="tag bg-red m-r12">惠</text>
+                <text class="font-14 color-99">{{item.item.promotion.platformActivityTag}}</text>
+            </view>
+            <view class="" wx:if="{{item.promotion.cardPromotionTag}}">
+                <text class="tag bg-purple m-r12">卡</text>
+                <text class="font-14 color-99">{{item.promotion.cardPromotionTag}}</text>
+            </view>
+        </view>
     </view>
 </scroll-view>

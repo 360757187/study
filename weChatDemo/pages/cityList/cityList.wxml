@@ -1,9 +1,9 @@
 <!-- 划动定位 -->
 <view style="text-align:center; width:40rpx; position:fixed; right: 5rpx; top: 12%; z-index: 9;">
-    <view style="width:40rpx;font-size:20rpx;" catchtap="selectItem" data-id="location">定位</view>
-    <view style="width:40rpx;font-size:20rpx;" catchtap="selectItem" data-id="lastActivity">最近</view>
-    <view style="width:40rpx;font-size:20rpx;" catchtap="selectItem" data-id="hotCity">热门</view>
-    <view class="font-13" wx:for="{{firstLetter}}" wx:for-item="item" wx:key="item" catchtap="selectItem" data-id="{{item}}">
+    <view style="width:40rpx;font-size:20rpx;" catch:touchstart="touchstart" catch:touchmove="touchMove" catchtap="selectItem" data-id="location">定位</view>
+    <view style="width:40rpx;font-size:20rpx;" catch:touchstart="touchstart" catch:touchmove="touchMove" catchtap="selectItem" data-id="lastActivity">最近</view>
+    <view style="width:40rpx;font-size:20rpx;" catch:touchstart="touchstart" catch:touchmove="touchMove" catchtap="selectItem" data-id="hotCity">热门</view>
+    <view class="font-13" wx:for="{{firstLetter}}" wx:for-item="item" catch:touchstart="touchstart" catch:touchmove="touchMove" wx:key="item" catchtap="selectItem" data-id="{{item}}">
         {{item}}
     </view>
 </view>

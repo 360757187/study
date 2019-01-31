@@ -1,45 +1,19 @@
 // pages/movieTheatre.js
-let order = ['red', 'yellow', 'blue', 'green', 'red']
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    toView: '',
-    list: ["list0", "list1", "list2", "list3", "list4", "list5", "list6", "list7", "list8", "list9", "list10", "list11", "list12", "list13", "list14", "list15", "list16", "list17", "list18", "list19", "list20", "list21", "list22", "list23", "list24", "list25", "list26", "list27", "list28", "list29"]
-  },
-
-  upper: function (e) {
-    console.log(e)
-  },
-
-  lower: function (e) {
-    console.log(e)
-  },
-
-  scroll: function (e) {
-    console.log(e)
-  },
-
-  tap: function (e) {
-    let target = e.currentTarget.dataset.opt;
-    this.setData({
-      toView: target
-    })
-  },
-  
-  tapMove: function (e) {
-    this.setData({
-      scrollTop: this.data.scrollTop + 10
-    })
+    theatreList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // let cityId = this.globalData.cityId;
+    this.getTheatreList(151);
   },
 
   /**
@@ -89,5 +63,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  
+  //获取影院列表
+  getTheatreList (cityId) {
+    let that = this;
+    wx.request({
+      url: `http://m.maoyan.com/ajax/cinemaList?day=2019-01-30&offset=0&limit=20&districtId=-1&lineId=-1&hallType=-1&brandId=-1&serviceId=-1&areaId=-1&stationId=-1&item=&updateShowDay=true&reqId=1548831570902&cityId=${cityId}`,
+      header: {
+          'content-type': 'application/json'
+      },
+      success({data}) {
+          let theatreList = data.cinemas;
+          that.setData({
+            theatreList
+          });
+          // wx.setStorage({
+          //   key: 'cityList',
+          //   data: JSON.stringify(cityObj),
+          //   success (res) {
+          //     console.log(res);
+          //   }
+          // });
+      }
+  })
   },
 })
