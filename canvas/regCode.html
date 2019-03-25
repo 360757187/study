@@ -17,10 +17,22 @@
                 constructor(canvas, options = {}) {
                     this.canvas = canvas;
                     this.canvasCtx = this.canvas.getContext('2d');
-                    this.codeContent = 'acdefhijkmnpwxyABCDEFGHJKMNPQWXY12345789';
-                    this.fontStyle = 'fill';
-                    this.fontSize = 28;
-                    this.fontFamily = 'Georgia';
+                    this.codeContent = options.codeContent || 'acdefhijkmnpwxyABCDEFGHJKMNPQWXY12345789';
+                    this.fontStyle = options.fontStyle || 'fill';
+                    this.fontSize = options.fontSize || 28;
+                    this.fontFamily = options.fontFamily || 'Georgia';
+                    //验证码长度
+                    this.len = options.len || '4';
+                    //线条数区间
+                    this.lineNum = options.lineNum || [2, 6];
+                    //圆点数区间
+                    this.dotNum = options.dotNum || [10, 20];
+                    //前景色区间
+                    this.forecolor = options.forecolor || [10, 80];
+                    //背景色区间
+                    this.backgroundcolor = options.backgroundcolor || [150, 250];
+                    //文字旋转角度区间
+                    this.rotate = options.rotate || [-10, 10];
                 }
                 //获取区间随机rgb
                 getColor(arr) {
@@ -39,14 +51,14 @@
                 //绘制随机线条
                 getLine() {
                     //线条数
-                    let lineNum = this.getRand([2, 6]);
+                    let lineNum = this.getRand(this.lineNum);
                     for (let i = 0; i < lineNum; i++) {
                         //获取随机坐标
                         let x = this.getRand([0, this.canvas.width]),
                             y = this.getRand([0, this.canvas.height]),
                             endX = this.getRand([0, this.canvas.width]),
                             endY = this.getRand([0, this.canvas.height]);
-                        let colors = this.getColor([10, 80]);
+                        let colors = this.getColor(this.forecolor);
                         //绘制线条
                         this.canvasCtx.beginPath();
                         this.canvasCtx.moveTo(x, y);
@@ -59,10 +71,10 @@
                 //绘制随机圆点
                 getDot() {
                     //圆点数
-                    let dotNum = this.getRand([10, 20]);
+                    let dotNum = this.getRand(this.dotNum);
                     for (let i = 0; i < dotNum; i++) {
                         //获取颜色
-                        let colors = this.getColor([10, 80]);
+                        let colors = this.getColor(this.forecolor);
                         //获取远点坐标、半径
                         let x = this.getRand([0, this.canvas.width]),
                             y = this.getRand([0, this.canvas.height]),
@@ -78,7 +90,7 @@
                 }
                 //获取随机验证码
                 getText() {
-                    let len = this.len || 4,
+                    let len = this.len,
                         str = '';
                     for (let i = 0; i < len; i++) {
                         str += this.codeContent[this.getRand([0, this.codeContent.length])];
@@ -86,12 +98,13 @@
                     return str;
                 }
                 //绘制验证码
-                getFont() {
+                getFont(cb) {
                     let str = this.getText();
-                    let len = this.len || str.length;
+                    let len = this.len;
+                    cb(str);
                     // 指定文字风格
                     this.canvasCtx.font = `${this.fontSize}px ${this.fontFamily}`;
-                    // this.canvasCtx.textBaseline = 'middle'; // 设置文本基线，middle是整个文字所占方框的高度的正中。
+                    this.canvasCtx.textBaseline = 'middle'; // 设置文本基线，middle是整个文字所占方框的高度的正中。
                     // 指定文字绘制风格
                     let fontStyle = `${this.fontStyle}Text`;
                     let colorStyle = `${this.fontStyle}Style`;
@@ -99,13 +112,14 @@
                         //文字宽度
                         let fontWidth = this.canvasCtx.measureText(str[i]).width;
                         //在文字的活动范围获取随机横坐标
-                        let x = this.getRand([this.canvas.width / len * i, this.canvas.width / len * i +
+                        let x = this.getRand([this.canvas.width / len * i +
+                            fontWidth / 2, this.canvas.width / len * i +
                             fontWidth / 2
                         ]);
                         //获取文字随机旋转角度
-                        let deg = this.getRand([-6, 6]);
+                        let deg = this.getRand(this.rotate);
                         //获取随机颜色
-                        let colors = this.getColor([10, 80]);
+                        let colors = this.getColor(this.forecolor);
                         this.canvasCtx[colorStyle] = `rgba(${colors[0]},${colors[0]},${colors[0]},0.8)`;
                         //开始绘制
                         this.canvasCtx.save();
@@ -115,12 +129,12 @@
                     }
                 }
                 //渲染方法
-                render() {
+                render(cb) {
                     //获取背景颜色
-                    let colors = this.getColor([150, 250]);
+                    let colors = this.getColor(this.backgroundcolor);
                     this.getLine();
                     this.getDot();
-                    this.getFont();
+                    this.getFont(cb);
                     this.canvasCtx.fillStyle = `rgba(${colors[0]},${colors[0]},${colors[0]},0.8)`;
                     this.canvasCtx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 }
@@ -129,16 +143,20 @@
                     this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 }
                 //重置画布
-                reload() {
+                reload(cb) {
                     this.clear();
-                    this.render();
+                    this.render(cb);
                 }
             }
             let canvas = document.getElementById('regCode');
             let regCode = new RegCode(canvas);
-            regCode.render();
-            canvas.addEventListener('click', function() {
-                regCode.reload();
+            regCode.render(function (str) {
+                console.log(str);
+            });
+            canvas.addEventListener('click', function () {
+                regCode.reload(function (str) {
+                    console.log(str);
+                });
             })
         }
     </script>
