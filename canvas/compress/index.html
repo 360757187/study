@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compress</title>
+</head>
+
+<body>
+  <div>
+    <input id='fileSelect' type='file' />
+    <input id='qValue' type="text" placeholder="图片质量0-1,默认0.9">
+    压缩为最大边为500px(canvas.toBlob的第二参数原因处理透明背景图片效果不佳，会出现背景变黑，文件体积增大问题)
+    <!-- <input id='reset' type='submit' value='reset'> -->
+  </div>
+  <div style='display: flex;'>
+    <div style='text-align: center; padding: 10px;'>
+      <img id='img1'>
+      <div id='size1'></div>
+    </div>
+    <div style='text-align: center; padding: 10px;'>
+      <img id='img2'>
+      <div id='size2'></div>
+    </div>
+  </div>
+  <canvas style='display: none;' id="test"></canvas>
+  <script>
+    window.onload = function () {
+      const fileSelect = document.getElementById('fileSelect');
+      const img1 = document.getElementById('img1');
+      const img2 = document.getElementById('img2');
+      const qValue = document.getElementById('qValue');
+      const canvas = document.getElementById('test');
+      //获得 2d 上下文对象
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      const width = 500, height = 500;
+
+      img.onload = function (e) {
+        let ratio = this.width / this.height;
+        let aspectRatio = ratio > 1 ? true : false; //判断图片高宽比
+        let rWidth = aspectRatio ? width : ratio * width;
+        let rHeight = aspectRatio ? height / ratio : height;
+        canvas.width = rWidth;
+        canvas.height = rHeight;
+        ctx.drawImage(img, 0, 0, rWidth, rHeight);
+        img1.width = rWidth;
+        img1.height = rHeight;
+        img2.width = rWidth;
+        img2.height = rHeight;
+        canvas.toBlob(function (e) {
+          img2.src = URL.createObjectURL(e);
+          img2.title = e.size;
+          document.getElementById('size2').innerText = `压缩后${(e.size / 1024).toFixed(2)}kb`;
+        }, 'image/jpeg', qValue.value ? +qValue.value : 0.9);
+      }
+      fileSelect.addEventListener('change', function (e) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        img1.src = '';
+        img2.src = '';
+        let blobUrl = URL.createObjectURL(e.target.files[0]);
+        img.src = blobUrl;
+        img1.src = blobUrl;
+        document.getElementById('size1').innerText = `压缩前${(e.target.files[0].size / 1024).toFixed(2)}kb`;
+      });
+    }
+  </script>
+</body>
+
+</html>
