@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蜂巢式图片墙</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .box {
+      display: inline-block;
+      position: relative;
+      width: 173px;
+      height: 200px;
+      margin: 5px;
+    }
+
+    .box div {
+      width: 173px;
+      height: 100px;
+      position: absolute;
+      margin-top: 50px;
+    }
+
+
+    .first {
+      overflow: hidden;
+    }
+
+    .firstImg {
+      margin-top: -50px;
+      z-index: 1;
+    }
+
+    .second {
+      transform: rotate(60deg);
+      overflow: hidden;
+    }
+
+    .secondImg {
+      transform: rotate(-60deg);
+      margin: -50px -50px 0 0;
+    }
+
+    .third {
+      transform: rotate(120deg);
+      overflow: hidden;
+    }
+
+    .thirdImg {
+      transform: rotate(-120deg);
+      margin-top: -50px;
+    }
+
+    .clo1 {
+      margin-left: 92px;
+      margin-bottom: -50px;
+    }
+
+    .clo3 {
+      margin-left: 92px;
+      margin-top: -50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <div class="clo1">
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/1551678722742.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/1551678722742.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/1551678722742.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/174d7a74f1d270d304fd4b02d125ad09.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/174d7a74f1d270d304fd4b02d125ad09.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/174d7a74f1d270d304fd4b02d125ad09.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/2ba668e356e0969f58883e526ce1bc19.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/2ba668e356e0969f58883e526ce1bc19.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/2ba668e356e0969f58883e526ce1bc19.jpg" width="173px" height="200px">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/5bcae7685902f.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/5bcae7685902f.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/5bcae7685902f.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/5c397b9da30cc.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/5c397b9da30cc.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/5c397b9da30cc.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/5c74f5f4751ac.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/5c74f5f4751ac.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/5c74f5f4751ac.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/6538a3245ffcabc0794b62a7ee3d7e17.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/6538a3245ffcabc0794b62a7ee3d7e17.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/6538a3245ffcabc0794b62a7ee3d7e17.jpg" width="173px" height="200px">
+        </div>
+      </div>
+    </div>
+    <div class="clo3">
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/854aa10705dbd63ff673241580d572f0.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/854aa10705dbd63ff673241580d572f0.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/854aa10705dbd63ff673241580d572f0.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/9193761b0168de21254c4291c0b7c945.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/9193761b0168de21254c4291c0b7c945.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/9193761b0168de21254c4291c0b7c945.jpg" width="173px" height="200px">
+        </div>
+      </div>
+      <div class="box">
+        <div class="first">
+          <img class="firstImg" src="./tp/fc162db24ae39ab3d12273b22d7f1f8c.jpg" width="173px" height="200px">
+        </div>
+        <div class="second">
+          <img class="secondImg" src="./tp/fc162db24ae39ab3d12273b22d7f1f8c.jpg" width="173px" height="200px">
+        </div>
+        <div class="third">
+          <img class="thirdImg" src="./tp/fc162db24ae39ab3d12273b22d7f1f8c.jpg" width="173px" height="200px">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
